@@ -1,1 +1,1 @@
-# social-media-django
+A Social Media Created with Django Rest Framework
