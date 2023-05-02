@@ -43,6 +43,7 @@ MY_APPS = [
     'posts',
     'comments',
     'followers',
+    'friends',
 ]
 
 THIRD_PARTY_APPS = [
