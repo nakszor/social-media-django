@@ -50,7 +50,7 @@ THIRD_PARTY_APPS = [
     'rest_framework',
 ]
 
-INSTALLED_APPS= DJANGO_APPS + MY_APPS + THIRD_PARTY_APPS
+INSTALLED_APPS = DJANGO_APPS + MY_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -159,3 +159,5 @@ SIMPLE_JWT = {
 
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',)
 }
+
+AUTH_USER_MODEL = "users.User"
