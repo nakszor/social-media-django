@@ -44,6 +44,7 @@ MY_APPS = [
     'comments',
     'followers',
     'friends',
+    "friendship_request",
 ]
 
 THIRD_PARTY_APPS = [
