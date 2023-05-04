@@ -23,4 +23,5 @@ urlpatterns = [
     path("api/", include("friends.urls")),
     path("api/", include("friendship_request.urls")),
     path("api/", include("posts.urls")),
+    path("api/", include("comments.urls"))
 ]
