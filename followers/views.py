@@ -6,11 +6,12 @@ from users.models import User
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import ValidationError
+from .permissions import IsFollowerToDelete
 
 
 class followersDetailViewes(DestroyAPIView, CreateAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsFollowerToDelete]
     queryset = Follower.objects.all()
     serializer_class = FollowerSerializer
     lookup_url_kwarg = "pk"
@@ -24,7 +25,7 @@ class followersDetailViewes(DestroyAPIView, CreateAPIView):
     
     def perform_create(self, serializer):
         user = self.request.user
-        arly_exists = get_object_or_404(self.queryset, followed=self.kwargs["pk"], follower=user)
+        arly_exists = Follower.objects.filter(followed=self.kwargs["pk"], follower=user).first()
         if arly_exists:
             raise ValidationError("message: voce ja segue esta pessoa")
         user_to_follow = get_object_or_404(User.objects.all(), id=self.kwargs["pk"])

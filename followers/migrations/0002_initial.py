@@ -10,17 +10,26 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ("followers", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ("friends", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name="friend",
-            name="friend",
+            model_name="follower",
+            name="followed",
             field=models.ForeignKey(
                 on_delete=django.db.models.deletion.CASCADE,
-                related_name="friends",
+                related_name="Im_following",
+                to=settings.AUTH_USER_MODEL,
+            ),
+        ),
+        migrations.AddField(
+            model_name="follower",
+            name="follower",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="my_followers",
                 to=settings.AUTH_USER_MODEL,
             ),
         ),
