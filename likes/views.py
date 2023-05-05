@@ -6,10 +6,12 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
 from posts.models import Post
 from rest_framework.exceptions import ValidationError
+from .permissions import IsLikeOwner
+
 
 class LikeView(CreateAPIView, DestroyAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsLikeOwner]
     queryset = Like.objects.all()
     serializer_class = LikeSerializar
     lookup_url_kwarg = "pk"
