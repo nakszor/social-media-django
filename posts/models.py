@@ -4,7 +4,6 @@ from django.db import models
 class PrivacyOptions(models.TextChoices):
     public_privacy = "Public"
     private_privacy = "Private"
-    friends_privacy = "Friends"
 
 
 class Post(models.Model):
