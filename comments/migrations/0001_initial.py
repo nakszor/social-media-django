@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="Friend",
+            name="Commentary",
             fields=[
                 (
                     "id",
@@ -21,6 +21,7 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
+                ("content", models.TextField()),
                 ("created_at", models.DateTimeField(auto_now_add=True)),
             ],
         ),
