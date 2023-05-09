@@ -58,7 +58,10 @@ MY_APPS = [
 
 THIRD_PARTY_APPS = [
     "rest_framework",
+    'drf_spectacular',
 ]
+
+
 
 INSTALLED_APPS = DJANGO_APPS + MY_APPS + THIRD_PARTY_APPS
 
@@ -74,7 +77,7 @@ MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
-ROOT_URLCONF = "_project.urls"
+ROOT_URLCONF = "_project.urls" 
 
 TEMPLATES = [
     {
@@ -173,6 +176,18 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # project_base/settings.py
 from datetime import timedelta
 
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Rede Social',
+    'DESCRIPTION': 'Api generica que permite que voce crie sua propria rede social ',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
@@ -183,4 +198,6 @@ SIMPLE_JWT = {
     "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
 }
 
+
 AUTH_USER_MODEL = "users.User"
+
