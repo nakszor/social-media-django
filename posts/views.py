@@ -16,7 +16,6 @@ class PostView(ListCreateAPIView, PageNumberPagination):
     serializer_class = PostSerializers
 
     def get_queryset(self):
-
         myUser = self.request.user
         if isinstance(myUser, AnonymousUser):
             return Post.objects.filter(privacy="Public")
