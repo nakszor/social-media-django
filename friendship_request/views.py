@@ -29,7 +29,7 @@ class RetrieveFriendshipRequest(ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        return Friendship.objects.filter(user=user)
+        return Friendship.objects.filter(friend=user)
 
 
 class UpdateFriendshipStatusView(CreateAPIView, DestroyAPIView):

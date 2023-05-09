@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="Post",
+            name="Commentary",
             fields=[
                 (
                     "id",
@@ -21,18 +21,7 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("title", models.CharField(max_length=50, unique=True)),
                 ("content", models.TextField()),
-                (
-                    "privacy",
-                    models.CharField(
-                        choices=[
-                            ("Public", "Public Privacy"),
-                            ("Private", "Private Privacy"),
-                        ],
-                        default="Public",
-                    ),
-                ),
                 ("created_at", models.DateTimeField(auto_now_add=True)),
             ],
         ),
