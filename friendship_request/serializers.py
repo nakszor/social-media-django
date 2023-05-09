@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Friendship
 from friends.models import Friend
+from django.shortcuts import get_object_or_404
 
 
 class FriendShipSerializer(serializers.ModelSerializer):
@@ -15,12 +16,11 @@ class FriendShipSerializer(serializers.ModelSerializer):
 
 
 class FriendsShipRetriever(serializers.ModelSerializer):
-    username = serializers.CharField(source="friend.username")
-    friend_id = serializers.IntegerField(source="friend.id")
+    username = serializers.CharField(source="user.username")
 
     class Meta:
         model = Friendship
-        fields = ["id", "friend_id", "username", "created_at"]
+        fields = ["id", "user_id", "username", "created_at"]
 
 
 class UpdateFriendshipStatusSerializer(serializers.ModelSerializer):
@@ -33,5 +33,5 @@ class UpdateFriendshipStatusSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         friend_id = validated_data["friend"].id
-        Friendship.objects.filter(friend_id=friend_id).delete()
+        get_object_or_404(Friendship, user_id=friend_id).delete()
         return Friend.objects.create(**validated_data)
