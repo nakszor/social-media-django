@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListCreateAPIView
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.pagination import PageNumberPagination
@@ -17,7 +16,6 @@ class PostView(ListCreateAPIView, PageNumberPagination):
     serializer_class = PostSerializers
 
     def get_queryset(self):
-
         myUser = self.request.user
         if isinstance(myUser, AnonymousUser):
             return Post.objects.filter(privacy="Public")
